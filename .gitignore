@@ -1,0 +1,25 @@
+# Local Python environments and tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+
+# Downloaded datasets, generated results, and solver output
+data/
+results/
+results_*.csv
+*.log
+*.lp
+*.mps
+*.sol
+
+# Gurobi licenses must never be committed
+gurobi.lic
+.DS_Store
+Thumbs.db

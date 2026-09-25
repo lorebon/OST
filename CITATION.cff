@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this research code, please cite the article below."
+title: "Optimal Shapelets Tree research code"
+type: software
+license: MIT
+authors:
+  - family-names: Bonasera
+    given-names: Lorenzo
+  - family-names: Gualandi
+    given-names: Stefano
+preferred-citation:
+  type: article
+  title: "Optimal shapelets tree for time series interpretable classification"
+  authors:
+    - family-names: Bonasera
+      given-names: Lorenzo
+    - family-names: Gualandi
+      given-names: Stefano
+  journal: "EURO Journal on Computational Optimization"
+  volume: "12"
+  start: "100091"
+  year: 2024
+  doi: "10.1016/j.ejco.2024.100091"
