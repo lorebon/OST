@@ -6,8 +6,6 @@ OST learns an interpretable time-series classifier using a mixed-integer optimiz
 
 This repository consists of directly runnable Python scripts. No package installation or build step is required. The implementation and experiment entry points live together in `code/`.
 
-> This maintained version includes correctness fixes that can change numerical results. It is not a bit-for-bit reproduction of the original implementation or the paper's tables. See [CHANGES.md](CHANGES.md) before comparing results.
-
 The original implementation is preserved on the [`old` branch](https://github.com/lorebon/OST/tree/old). The `main` branch contains the maintained version.
 
 ## Setup
@@ -64,7 +62,6 @@ Every entry point supports `--help`. Full experiment commands, defaults, and out
 | Train on UCR data or run a synthetic study | [Experiment guide](docs/experiments.md) |
 | Inspect the mathematical formulation | [code/training.py](code/training.py) |
 | Run tests or modify the scripts | [Development notes](docs/development.md) |
-| Check changes that may affect paper results | [CHANGES.md](CHANGES.md) |
 
 ```text
 code/                 Model, preprocessing, prediction, and runnable experiments
@@ -72,7 +69,6 @@ docs/                 Method, experiment instructions, and development notes
 tests/                Core regressions and small Gurobi integration tests
 requirements*.txt     Runtime dependencies and tested environment
 CITATION.cff          Machine-readable paper citation
-CHANGES.md            Scientific and compatibility changes
 ```
 
 ## Citation and license

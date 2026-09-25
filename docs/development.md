@@ -22,18 +22,6 @@ The solver tests are intentionally tiny and skip when Gurobi or a license is una
 
 All Python implementation files and experiment entry points live together in `code/`. Run entry points as `python code/<script>.py` from the repository root. There is no `__init__.py`, package metadata, editable installation, or build step. `pytest.ini` adds `code/` to the test import path; the scripts themselves use ordinary local imports.
 
-Keep mathematical changes separate from presentation changes when possible. Describe anything that could alter predictions, optimization feasibility, or experiment results in [CHANGES.md](../CHANGES.md), and add a regression check for meaningful behavior changes. Keep commands and links in the documentation in sync when renaming a script.
+Add regression checks for meaningful behavior changes. Keep commands and links in the documentation in sync when renaming a script.
 
 `data/`, `results/`, local environments, caches, and solver output are ignored by Git. Keep generated results outside `code/` and do not commit Gurobi license files.
-
-## Previous script names
-
-All scripts moved from `Optimal Shapelets Tree/` to `code/`. The experiment entry points also changed names:
-
-| Previous filename | Current filename |
-| --- | --- |
-| `ground_depth.py` | `experiment_depth.py` |
-| `ground_length.py` | `experiment_shapelet_length.py` |
-| `learning_test.py` | `experiment_series_length.py` |
-
-Update saved commands and imports to the new paths. The renamed experiment files retain `computeAll(parameter)` for interactive use. The reorganization changes neither solver logic nor experiment settings, seeds, or output naming.

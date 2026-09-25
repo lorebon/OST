@@ -4,7 +4,7 @@
 
 ## Scope and entry points
 
-These commands expose the UCR workflow and three synthetic studies supplied with the research code. They are not a complete automated reproduction of every experiment or table in the paper. Correctness fixes are documented in [CHANGES.md](../CHANGES.md), and the full published experiments have not been rerun during this cleanup.
+These commands expose the UCR workflow and three synthetic studies supplied with the research code. They are not a complete automated reproduction of every experiment or table in the paper.
 
 | Study | Entry point | Purpose | Default outputs |
 | --- | --- | --- | --- |
@@ -68,7 +68,7 @@ The three entry points share simulation, cross-validation, solver configuration,
 | `experiment_shapelet_length.py` | True shapelet length | 3, 6, 9, 12, 15, 18 | Cross-validates H in 2, 4, …, 18 at depth 3 |
 | `experiment_series_length.py` | **Series length**, with training size fixed | 50, 100, 200, 400 | Fits depth 1 and H = floor(series length / 5) |
 
-`experiment_series_length.py` was originally named `learning_test.py`. It varies series length at a fixed training size. Its original output column was mislabeled “Training size”; the current results explicitly record the series length.
+`experiment_series_length.py` varies series length at a fixed training size. Its results explicitly record the series length.
 
 Default experiments use 1,000 simulated series, 100 training samples, five random generating trees, and five populations per tree (25 final fits per parameter). Cross-validation uses five stratified folds. The final solve time limit is 600 seconds, or 3,600 seconds for `experiment_series_length.py`; each CV solve is limited to 60 seconds. Full sweeps can therefore take a long time. At fitted depth 1 there is no leaf penalty in the objective, so the depth study evaluates only the first alpha.
 
@@ -102,7 +102,7 @@ Seeds are derived from the experiment, parameter value, and repetition indices, 
 
 ## Smoke runs and reported experiments
 
-The small commands in the quickstart and above are execution checks, not estimates of the paper's reported performance. The full default synthetic commands restore the original study sizes and grids, with the documented correctness changes.
+The small commands in the quickstart and above are execution checks, not estimates of the paper's reported performance. The full default synthetic commands use the study sizes and parameter grids described above.
 
 For a result you intend to report, retain the command/configuration, raw run records, solver status and gaps, dataset identity and split, and dependency versions. Do not compare a time-limited incumbent with a proven optimum without reporting that distinction. A successful quickstart does not establish statistical performance.
 

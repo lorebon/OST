@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Method](method.md) · [Experiments](experiments.md) · [Development](development.md)
 
-This guide describes the implemented model and its core functions. For the scientific context, see the [paper](https://doi.org/10.1016/j.ejco.2024.100091); for corrections to the original code, see [CHANGES.md](../CHANGES.md).
+This guide describes the implemented model and its core functions. For the scientific context, see the [paper](https://doi.org/10.1016/j.ejco.2024.100091).
 
 ## Optimization model
 
@@ -31,7 +31,7 @@ A numerical issue is not a reason to round learned thresholds. Keep the branch m
 
 ## Using the functions
 
-The core functions retain their historical names. Put custom scripts alongside them in `code/` so ordinary local imports work; no package installation is needed.
+Put custom scripts alongside the core functions in `code/` so ordinary local imports work; no package installation is needed.
 
 1. Call `preprocessTrain` to obtain normalized data, encoded labels, ordered original classes, encoded classes, and a scaler.
 2. Choose an exemplar with `KMedoids`, or supply an already normalized series to `generateModel` through `true_exemplar`.
