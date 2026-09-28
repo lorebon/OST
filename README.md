@@ -6,8 +6,6 @@ OST learns an interpretable time-series classifier using a mixed-integer optimiz
 
 This repository consists of directly runnable Python scripts. No package installation or build step is required. The implementation and experiment entry points live together in `code/`.
 
-The original implementation is preserved on the [`old` branch](https://github.com/lorebon/OST/tree/old). The `main` branch contains the maintained version.
-
 ## Setup
 
 Use Python 3.12 for the tested environment. From the repository root:
