@@ -12,7 +12,7 @@ This guide describes the implemented model and its core functions. For the scien
 - Each branch chooses exactly one input window position and one exemplar window position. There are `J - H + 1` possible starts, including the final window and the full-series case `H = J`.
 - The input position is shared across samples at a branch. Prediction compares those selected windows; it does **not** search for a different best-matching input window for every sample.
 - Left routing uses `distance <= threshold`; right routing is separated by epsilon during training. Prediction uses unrounded thresholds and a small numerical tolerance. The entry scripts use the solver feasibility tolerance, set below epsilon.
-- Every class must label at least one active leaf. Each active leaf must contain at least `ceil(0.05 * n)` training samples. This can make a model infeasible even when its depth is sufficient.
+- Each active leaf predicts a majority class among its assigned training samples, following paper Equations (49)-(50); ties may select any tied majority class. Every class must label at least one active leaf. Each active leaf must contain at least `ceil(0.05 * n)` training samples. These requirements can make a model infeasible even when its depth is sufficient.
 - If `2**depth > K`, the objective is `misclassified_count / LT + alpha * active_leaf_count`. Otherwise, it is just the misclassification count. `LT` retains the original implementation's convention: the **majority-class count** in `main.py` and the depth experiment, and 1 in the length and learning experiments. It is not an accuracy fraction or a baseline error count.
 - Empty subtrees are bypassed during prediction. Active-leaf labels are encoded integers; inactive leaves have label -1.
 

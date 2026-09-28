@@ -189,7 +189,9 @@ def generateModel(
         for k in range(K):
             m.addConstr(N_kt[k, t] == gp.quicksum(z[i, t] for i in range(n) if y_train[i] == k))
             m.addConstr(loss[t] >= N_t[t] - N_kt[k, t] - n * (1 - c[k, t]))
-            m.addConstr(loss[t] <= N_t[t] - N_kt[k, t] + n * (1 - c[k, t]))
+            # Paper Eq. (50): unselected classes bound the loss so the
+            # selected label must be a majority class in this leaf.
+            m.addConstr(loss[t] <= N_t[t] - N_kt[k, t] + n * c[k, t])
         left, right = [], []
         findAncestors(left, right, t + branch_nodes)
         for i in range(n):

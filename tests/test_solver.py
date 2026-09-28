@@ -58,21 +58,25 @@ def test_last_window_can_be_selected():
 
 
 @pytest.mark.gurobi
-def test_loss_matches_selected_class_even_when_not_leaf_majority():
-    # Representing every class can require a non-majority leaf label. The
-    # unselected majority label must not incorrectly cap that leaf's loss.
+@pytest.mark.parametrize("last_label, expected_loss", [(0, None), (1, 1)])
+def test_leaf_labels_must_be_majority_classes(last_label, expected_loss):
+    # Identical inputs cannot be separated. If both input groups have a
+    # class-0 majority, representing class 1 requires a forbidden minority
+    # label. Giving the singleton class 1 makes the tree feasible.
     X = np.array([[0], [0], [0], [0], [1]], dtype=float)
-    y = np.array([0, 0, 0, 1, 0])
+    y = np.array([0, 0, 0, 1, last_label])
     model, branches, leaves, n, ex = generateModel(X, y, 1, 1, 1, 1e-4, exemplar=0)
     try:
-        model.update()
-        model.addConstr(model.getVarByName("c[1,0]") == 1)
         configure_solver(model, 10, 1e-4, quiet=True)
         model.optimize()
+        if expected_loss is None:
+            assert model.Status == 3  # Infeasible under paper Eqs. (49)-(52).
+            assert model.SolCount == 0
+            return
         assert model.Status == 2
-        assert model.ObjVal == pytest.approx(3)
+        assert model.ObjVal == pytest.approx(expected_loss)
         tree = retrieveSolution(model, branches, leaves, 1, 1, n, 2)
-        assert np.count_nonzero(predict(*tree, X, ex) != y) == 3
+        np.testing.assert_array_equal(predict(*tree, X, ex), [0, 0, 0, 0, 1])
     finally:
         model.dispose()
 
