@@ -32,7 +32,7 @@ Install the tested dependency versions:
 python -m pip install -r requirements-tested.txt
 ```
 
-Training requires a working **Gurobi license** appropriate for the model size. See the [Gurobi setup guide](https://docs.gurobi.com/projects/optimizer/en/current/). Preprocessing and prediction do not require Gurobi. See [development notes](docs/development.md) for alternative dependency installs and checks.
+Training requires a working **Gurobi license** appropriate for the model size. See the [Gurobi setup guide](https://docs.gurobi.com/projects/optimizer/en/current/). Preprocessing and prediction do not require Gurobi.
 
 ## Quickstart
 
@@ -50,20 +50,12 @@ For a synthetic smoke run with no dataset download:
 python code/experiment_series_length.py --values 6 --tree-repeats 1 --data-repeats 1 --population 40 --train-size 10 --time-limit 5 --quiet --output results/smoke.csv
 ```
 
-Every entry point supports `--help`. Full experiment commands, defaults, and output formats are in the [experiment guide](docs/experiments.md).
+Every entry point supports `--help` for available options and defaults.
 
 ## Find your way around
 
-| Task | Start here |
-| --- | --- |
-| Understand the model and core functions | [Method and code guide](docs/method.md) |
-| Train on UCR data or run a synthetic study | [Experiment guide](docs/experiments.md) |
-| Inspect the mathematical formulation | [code/training.py](code/training.py) |
-| Run tests or modify the scripts | [Development notes](docs/development.md) |
-
 ```text
 code/                 Model, preprocessing, prediction, and runnable experiments
-docs/                 Method, experiment instructions, and development notes
 tests/                Core regressions and small Gurobi integration tests
 requirements*.txt     Runtime dependencies and tested environment
 CITATION.cff          Machine-readable paper citation
